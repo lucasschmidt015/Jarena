@@ -11,7 +11,7 @@ public class AgenteInimigo extends Agente
 {
 	public AgenteInimigo(Integer x, Integer y, Integer energia) {
 		super(x, y, energia);
-	}3
+	}
 	
 	public void pensa() {
 		if(!podeMoverPara(getDirecao())) {
