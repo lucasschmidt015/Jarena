@@ -8,6 +8,8 @@
 
 package br.uffs.cc.jarena;
 
+import java.sql.Time;
+
 public class AgenteDummy extends Agente
 {
 	public AgenteDummy(Integer x, Integer y, Integer energia) {
@@ -22,24 +24,43 @@ public class AgenteDummy extends Agente
 		if(!podeMoverPara(getDirecao())) {
 			// Como não conseguimos nos mover, vamos escolher uma direção
 			// nova.
+			
 			setDirecao(geraDirecaoAleatoria());
 		}
 		
 		// Se o agente conseguie se dividir (tem energia) e se o total de energia
 		// do agente é maior que 400, nos dividimos. O agente filho terá a metade
 		// da nossa energia atual.
-		if(podeDividir() && getEnergia() >= 800) {
+		
+		if(podeDividir() && getEnergia() >= 1250) {
 			divide();
 		}
 	}
 	
 	public void recebeuEnergia() {
 		// Invocado sempre que o agente recebe energia.
+		para();
+		if(getEnergia()<=500)
+		{
+			setDirecao(geraDirecaoAleatoria());
+			if(getEnergia() >= 700)
+			{
+				setDirecao(geraDirecaoAleatoria());
+			}
+		}
 	}
-	
+
 	public void tomouDano(int energiaRestanteInimigo) {
 		// Invocado quando o agente está na mesma posição que um agente inimigo
 		// e eles estão batalhando (ambos tomam dano).
+		if(energiaRestanteInimigo < getEnergia())
+		{
+			para();			
+		}
+		else
+		{
+			setDirecao(geraDirecaoAleatoria());
+		}
 	}
 	
 	public void ganhouCombate() {
@@ -52,6 +73,6 @@ public class AgenteDummy extends Agente
 	
 	public String getEquipe() {
 		// Definimos que o nome da equipe do agente é "Fernando".
-		return "Fernando";
+		return "zzzzzzzzzzz";
 	}
 }

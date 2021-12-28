@@ -11,7 +11,7 @@ public class AgenteInimigo extends Agente
 {
 	public AgenteInimigo(Integer x, Integer y, Integer energia) {
 		super(x, y, energia);
-	}
+	}3
 	
 	public void pensa() {
 		if(!podeMoverPara(getDirecao())) {
@@ -20,6 +20,15 @@ public class AgenteInimigo extends Agente
 	}
 	
 	public void recebeuEnergia() {
+			// Invocado sempre que o agente recebe energia.
+			para();
+			if(getEnergia()<=500)
+			{
+				getDirecao();
+				if(getEnergia() >= 700){
+					getDirecao();
+				}
+			}
 	}
 	
 	public void tomouDano(int energiaRestanteInimigo) {
