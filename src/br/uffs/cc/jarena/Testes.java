@@ -2,6 +2,7 @@ package br.uffs.cc.jarena;
 
 public class Testes extends Agente
 {
+    private boolean energizado = false;
 	public Testes(Integer x, Integer y, Integer energia) {
 		super(x, y, energia);
 		setDirecao(geraDirecaoAleatoria());
@@ -16,18 +17,30 @@ public class Testes extends Agente
 			// nova.
 			setDirecao(geraDirecaoAleatoria());
 		}
+        if(isParado()){
+            if(energizado){
+                para();
+            }
+            else{
+                setDirecao(geraDirecaoAleatoria());
+            }
+        }
 		
 		// Se o agente conseguie se dividir (tem energia) e se o total de energia
 		// do agente é maior que 400, nos dividimos. O agente filho terá a metade
 		// da nossa energia atual.
-		if(podeDividir() && getEnergia() >= 800) {
+		/*if(podeDividir() && getEnergia() >= 800) {
 			divide();
-		}
+		}*/
+        
 	}
 	
 	public void recebeuEnergia() {
 		// Invocado sempre que o agente recebe energia.
         enviaMensagem("EnergiaDaBoa");
+        this.energizado = true;
+        para();
+        recebendoEnergia();
 	}
 	
 	public void tomouDano(int energiaRestanteInimigo) {
@@ -52,6 +65,10 @@ public class Testes extends Agente
 	
 	public String getEquipe() {
 		// Definimos que o nome da equipe do agente é "Fernando".
-		return "Fernando";
+		return "Schmidt";
 	}
+    private boolean recebendoEnergia(){
+        this.energizado = false;
+        return this.energizado;
+    }
 }
