@@ -18,12 +18,8 @@ public class Testes extends Agente
 			setDirecao(geraDirecaoAleatoria());
 		}
         if(isParado()){
-            if(energizado){
-                para();
-            }
-            else{
-                setDirecao(geraDirecaoAleatoria());
-            }
+            setDirecao(geraDirecaoAleatoria());
+			this.energizado = false;
         }
 		
 		// Se o agente conseguie se dividir (tem energia) e se o total de energia
@@ -38,9 +34,8 @@ public class Testes extends Agente
 	public void recebeuEnergia() {
 		// Invocado sempre que o agente recebe energia.
         enviaMensagem("EnergiaDaBoa");
-        this.energizado = true;
         para();
-        recebendoEnergia();
+        this.energizado = true;
 	}
 	
 	public void tomouDano(int energiaRestanteInimigo) {
@@ -67,8 +62,4 @@ public class Testes extends Agente
 		// Definimos que o nome da equipe do agente é "Fernando".
 		return "Schmidt";
 	}
-    private boolean recebendoEnergia(){
-        this.energizado = false;
-        return this.energizado;
-    }
 }
