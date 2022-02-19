@@ -42,6 +42,7 @@ public class AgenteDummy extends Agente
 		para();
 		if(getEnergia()<=500)
 		{
+			enviaMensagem(String.valueOf(getX()) +" "+ String.valueOf(getY()));
 			setDirecao(geraDirecaoAleatoria());
 			if(getEnergia() >= 700)
 			{
@@ -69,10 +70,22 @@ public class AgenteDummy extends Agente
 	
 	public void recebeuMensagem(String msg) {
 		// Invocado sempre que um agente aliado próximo envia uma mensagem.
+		int[] posicoes = converter(msg);
 	}
 	
 	public String getEquipe() {
 		// Definimos que o nome da equipe do agente é "Fernando".
-		return "zzzzzzzzzzz";
+		return "Equipe_Lucas/Geovane";
+	}
+
+	private int[] converter(String positions) {
+		String[] vet = positions.split(",");
+		int[] XY = new int [2];
+
+		for (int i = 0; i < vet.length; i++){
+			XY[i] = Integer.parseInt(vet[i]);
+		}
+
+		return XY;
 	}
 }
