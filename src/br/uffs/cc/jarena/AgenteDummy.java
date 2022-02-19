@@ -18,19 +18,10 @@ public class AgenteDummy extends Agente
 	}
 	
 	public void pensa() {
-		// Se não conseguimos nos mover para a direção atual, quer dizer
-		// que chegamos no final do mapa ou existe algo bloqueando nosso
-		// caminho.
 		if(!podeMoverPara(getDirecao())) {
-			// Como não conseguimos nos mover, vamos escolher uma direção
-			// nova.
 			
 			setDirecao(geraDirecaoAleatoria());
 		}
-		
-		// Se o agente conseguie se dividir (tem energia) e se o total de energia
-		// do agente é maior que 400, nos dividimos. O agente filho terá a metade
-		// da nossa energia atual.
 		
 		if(podeDividir() && getEnergia() >= 1250) {
 			divide();
@@ -38,16 +29,15 @@ public class AgenteDummy extends Agente
 	}
 	
 	public void recebeuEnergia() {
-		// Invocado sempre que o agente recebe energia.
 		para();
-		if(getEnergia()<=500)
+		enviaMensagem(String.valueOf(getX()) +","+ String.valueOf(getY()));
+		if(getEnergia() >= 500)
 		{
-			enviaMensagem(String.valueOf(getX()) +" "+ String.valueOf(getY()));
-			setDirecao(geraDirecaoAleatoria());
-			if(getEnergia() >= 700)
-			{
-				setDirecao(geraDirecaoAleatoria());
-			}
+			para();
+			setDirecao(geraDirecaoAleatoria());		
+		}
+		else{
+
 		}
 	}
 
@@ -70,7 +60,7 @@ public class AgenteDummy extends Agente
 	
 	public void recebeuMensagem(String msg) {
 		// Invocado sempre que um agente aliado próximo envia uma mensagem.
-		int[] posicoes = converter(msg);
+		int[] posicoes = converter(msg);		
 	}
 	
 	public String getEquipe() {
