@@ -22,6 +22,7 @@ public class Testes extends Agente
 			this.energizado = false;
         }
 		
+		
 		// Se o agente conseguie se dividir (tem energia) e se o total de energia
 		// do agente é maior que 400, nos dividimos. O agente filho terá a metade
 		// da nossa energia atual.
