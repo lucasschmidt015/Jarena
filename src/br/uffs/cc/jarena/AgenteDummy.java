@@ -18,35 +18,26 @@ public class AgenteDummy extends Agente
 	}
 	
 	public void pensa() {
-		if(!podeMoverPara(getDirecao())) {
+		if (!podeMoverPara(getDirecao())) {
 			
 			setDirecao(geraDirecaoAleatoria());
 		}
-		
-		if(podeDividir() && getEnergia() >= 1250) {
-			divide();
+
+		if (getEnergia() < 200)
+		{
+			para();
 		}
 	}
 	
 	public void recebeuEnergia() {
 		para();
-		enviaMensagem(String.valueOf(getX()) +","+ String.valueOf(getY()));
-		if(getEnergia() >= 500)
-		{
-			para();
-			setDirecao(geraDirecaoAleatoria());		
-		}
-		else{
-
-		}
+		enviaMensagem(getX() + "," + getY());
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		// Invocado quando o agente está na mesma posição que um agente inimigo
-		// e eles estão batalhando (ambos tomam dano).
 		if(energiaRestanteInimigo < getEnergia())
 		{
-			para();			
+			para();
 		}
 		else
 		{
@@ -55,16 +46,38 @@ public class AgenteDummy extends Agente
 	}
 	
 	public void ganhouCombate() {
-		// Invocado se estamos batalhando e nosso inimigo morreu.
+		setDirecao(geraDirecaoAleatoria());
 	}
 	
 	public void recebeuMensagem(String msg) {
-		// Invocado sempre que um agente aliado próximo envia uma mensagem.
-		int[] posicoes = converter(msg);		
+		int[] posicoes = converter(msg);	
+		int diferencaX,diferencaY;
+		
+		diferencaX = posicoes[0] - getX();
+		diferencaY = posicoes[1] - getY();
+		if(diferencaX<0){
+			diferencaX = diferencaX * (-1);
+		}
+		if(diferencaY < 0){
+			diferencaY = diferencaY * (-1);
+		}
+		if(diferencaX > diferencaY){
+			if(posicoes[0] > getX()){
+				setDirecao(DIREITA);
+			}else if(posicoes[0] < getX()){
+				setDirecao(ESQUERDA);
+			}
+		}else{
+			if(posicoes[1] > getY()){
+				setDirecao(BAIXO);
+			}else{
+				setDirecao(CIMA);
+			}
+		}
 	}
 	
+	
 	public String getEquipe() {
-		// Definimos que o nome da equipe do agente é "Fernando".
 		return "Equipe_Lucas/Geovane";
 	}
 
