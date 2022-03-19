@@ -8,10 +8,9 @@
 
 package br.uffs.cc.jarena;
 
-import java.sql.Time;
-
 public class AgenteDummy extends Agente
 {
+	private int ContaEnergia;
 	public AgenteDummy(Integer x, Integer y, Integer energia) {
 		super(x, y, energia);
 		setDirecao(geraDirecaoAleatoria());
@@ -23,30 +22,33 @@ public class AgenteDummy extends Agente
 			setDirecao(geraDirecaoAleatoria());
 		}
 
-		if (getEnergia() < 200)
+		/*if (getEnergia() < 200)
 		{
 			para();
-		}
+		}*/
+
 	}
 	
+	public void recebendoEnergia()
+	{
+		if(ContaEnergia < getEnergia())
+			ContaEnergia = getEnergia();
+		else
+			setDirecao(geraDirecaoAleatoria());
+	}
+
 	public void recebeuEnergia() {
 		para();
 		enviaMensagem(getX() + "," + getY());
+		recebendoEnergia();
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		if(energiaRestanteInimigo < getEnergia())
-		{
-			para();
-		}
-		else
-		{
-			setDirecao(geraDirecaoAleatoria());
-		}
+		setDirecao(geraDirecaoAleatoria());
 	}
 	
 	public void ganhouCombate() {
-		setDirecao(geraDirecaoAleatoria());
+		//Pensar em algo
 	}
 	
 	public void recebeuMensagem(String msg) {
