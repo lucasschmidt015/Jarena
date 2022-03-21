@@ -22,33 +22,24 @@ public class AgenteDummy extends Agente
 			setDirecao(geraDirecaoAleatoria());
 		}
 
-		/*if (getEnergia() < 200)
+		if (getEnergia() < 100)
 		{
 			para();
-		}*/
+		}
 
-	}
-	
-	public void recebendoEnergia()
-	{
-		if(ContaEnergia < getEnergia())
-			ContaEnergia = getEnergia();
-		else
-			setDirecao(geraDirecaoAleatoria());
 	}
 
 	public void recebeuEnergia() {
 		para();
 		enviaMensagem(getX() + "," + getY());
-		recebendoEnergia();
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		setDirecao(geraDirecaoAleatoria());
+		setDirecao(geraDirecaoAleatoria());  //Fugir
 	}
 	
 	public void ganhouCombate() {
-		//Pensar em algo
+		setDirecao(geraDirecaoAleatoria());
 	}
 	
 	public void recebeuMensagem(String msg) {
