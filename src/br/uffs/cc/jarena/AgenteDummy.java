@@ -35,7 +35,7 @@ public class AgenteDummy extends Agente
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		setDirecao(geraDirecaoAleatoria());  //Fugir
+		setDirecao(geraDirecaoAleatoria());
 	}
 	
 	public void ganhouCombate() {
