@@ -27,6 +27,10 @@ public class AgenteDummy extends Agente
 			para();
 		}
 
+		if (isParado())
+		{
+			
+		}
 	}
 
 	public void recebeuEnergia() {
@@ -35,7 +39,8 @@ public class AgenteDummy extends Agente
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		setDirecao(geraDirecaoAleatoria());
+		para();
+		enviaMensagem(getX() + "," + getY());
 	}
 	
 	public void ganhouCombate() {
