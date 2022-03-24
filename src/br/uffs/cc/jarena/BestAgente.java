@@ -8,13 +8,14 @@ public class BestAgente extends Agente{
 	
 	public void pensa() {
 		if (!podeMoverPara(getDirecao())) {
-			
 			setDirecao(geraDirecaoAleatoria());
 		}
-
 		if (getEnergia() < 200)
 		{
 			para();
+			if(getEnergia() >= 210){
+				setDirecao(geraDirecaoAleatoria());
+			}
 		}
 	}
 
@@ -41,17 +42,17 @@ public class BestAgente extends Agente{
 	
 	public void recebeuMensagem(String msg) {
 		int[] posicoes = converter(msg);	
-		int diferencaX,diferencaY;
+		int distanciaX,distanciaY;
 		
-		diferencaX = posicoes[0] - getX();
-		diferencaY = posicoes[1] - getY();
-		if(diferencaX<0){
-			diferencaX = diferencaX * (-1);
+		distanciaX = posicoes[0] - getX();
+		distanciaY = posicoes[1] - getY();
+		if(distanciaX < 0){
+			distanciaX = distanciaX * (-1);
 		}
-		if(diferencaY < 0){
-			diferencaY = diferencaY * (-1);
+		if(distanciaY < 0){
+			distanciaY = distanciaY * (-1);
 		}
-		if(diferencaX > diferencaY){
+		if(distanciaX > distanciaY){
 			if(posicoes[0] > getX()){
 				setDirecao(DIREITA);
 			}else if(posicoes[0] < getX()){
@@ -67,18 +68,19 @@ public class BestAgente extends Agente{
 	}
 	
 	
-	public String getEquipe() {
-		return "Equipe_Lucas/Geovane";
-	}
-
+	
 	private int[] converter(String positions) {
 		String[] vet = positions.split(",");
 		int[] XY = new int [2];
-
+		
 		for (int i = 0; i < vet.length; i++){
 			XY[i] = Integer.parseInt(vet[i]);
 		}
 
 		return XY;
+	}
+
+	public String getEquipe() {
+		return "Equipe_Lucas/Geovane";
 	}
 }
