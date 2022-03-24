@@ -10,7 +10,6 @@ package br.uffs.cc.jarena;
 
 public class AgenteDummy extends Agente
 {
-	private int ContaEnergia;
 	public AgenteDummy(Integer x, Integer y, Integer energia) {
 		super(x, y, energia);
 		setDirecao(geraDirecaoAleatoria());
@@ -22,14 +21,9 @@ public class AgenteDummy extends Agente
 			setDirecao(geraDirecaoAleatoria());
 		}
 
-		if (getEnergia() < 100)
+		if (getEnergia() < 200)
 		{
 			para();
-		}
-
-		if (isParado())
-		{
-			
 		}
 	}
 
@@ -39,8 +33,15 @@ public class AgenteDummy extends Agente
 	}
 
 	public void tomouDano(int energiaRestanteInimigo) {
-		para();
-		enviaMensagem(getX() + "," + getY());
+		if (energiaRestanteInimigo < getEnergia())
+		{
+			para();
+			enviaMensagem(getX() + "," + getY());
+		}
+		else
+		{
+			setDirecao(geraDirecaoAleatoria());
+		}
 	}
 	
 	public void ganhouCombate() {
